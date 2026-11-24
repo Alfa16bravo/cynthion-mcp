@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cynthion-mcp"
+version = "0.1.0"
+description = "Unofficial MCP server to drive a Great Scott Gadgets Cynthion (USB analyzer, Facedancer emulation, FPGA gateware) from an AI assistant"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "cynthion-mcp contributors" }]
+keywords = [
+    "mcp", "model-context-protocol", "cynthion", "luna", "usb", "usb-analyzer",
+    "facedancer", "moondancer", "fpga", "ecp5", "amaranth", "hardware-hacking",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Hardware",
+    "Topic :: System :: Hardware :: Universal Serial Bus (USB)",
+    "Topic :: Software Development :: Embedded Systems",
+]
+dependencies = [
+    "mcp>=1.27,<2",
+    "anyio>=4.1",
+    "pydantic>=2",
+    "cynthion>=0.2.5",
+    "apollo-fpga>=1.1.1",
+    "pyfwup>=0.5",
+    "pygreat>=2024.0.5",
+    "facedancer>=3.1.3",
+    "amaranth>=0.5",
+    "pyusb>=1.2.1",
+    "libusb1>=1.9.3",
+]
+
+[project.optional-dependencies]
+# Open-source ECP5 toolchain for build_gateware (alternative: a native OSS CAD Suite install).
+build = ["yowasp-yosys>=0.40", "yowasp-nextpnr-ecp5>=0.7"]
+dev = ["pytest>=8", "ruff>=0.9"]
+# Kept for backward compatibility with `pip install -e .[test]`.
+test = ["pytest>=8"]
+
+[project.urls]
+Homepage = "https://github.com/Alfa16bravo/cynthion-mcp"
+Repository = "https://github.com/Alfa16bravo/cynthion-mcp"
+Issues = "https://github.com/Alfa16bravo/cynthion-mcp/issues"
+Changelog = "https://github.com/Alfa16bravo/cynthion-mcp/blob/main/CHANGELOG.md"
+
+[project.scripts]
+cynthion-mcp = "cynthion_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]
+markers = ["slow: tests that spawn subprocesses (deselect with -m \"not slow\")"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = ["build", "gateware_builds"]
+
+[tool.ruff.lint]
+# pycodestyle errors/warnings + pyflakes; long lines are not enforced.
+select = ["E", "F", "W"]
+ignore = ["E501"]

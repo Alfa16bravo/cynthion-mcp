@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "cynthion": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["-m", "cynthion_mcp"],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "CYNTHION_MCP_LOG_LEVEL": "INFO"
+      }
+    }
+  }
+}

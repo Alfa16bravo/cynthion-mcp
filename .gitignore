@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+.eggs/
+build/
+dist/
+wheels/
+pip-wheel-metadata/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Test / tool caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.benchmarks/
+.coverage
+.coverage.*
+htmlcov/
+
+# Captures, dumps and build outputs (may contain sensitive USB traffic)
+*.pcap
+*.pcapng
+gateware_builds/
+*.bit
+*.svf
+
+# Local MCP client config (keep the example)
+.mcp.json
+!.mcp.json.example
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
