@@ -6,22 +6,7 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
-### Fixed
-- Class decoder: complete-split SETUP tokens (devices behind a high-speed hub) no longer break control transfers;
-  a bus reset reports pending control transfers ("aborted by reset") instead of dropping them; SET_ADDRESS moves
-  the device model only after an ACKed status stage and never replaces a learned model; FTDI baud decoding of
-  multi-port channels and the H-series 12 / 8 Mbaud encodings.
-- `analyzer_decode_classes`: during a capture, `next_seq` points at the first item still open so it comes back
-  completed on the next page.
-- `build_gateware`: stage progress now reaches the client; the build can be cancelled (the process tree is
-  killed) and is killed when the server exits; `extra_args` strings accept values with spaces
-  (`nextpnr_opts=--seed 3`); the log file is never written after it is closed.
-- `gateware_toolchain_status` probes OSS CAD Suite tools with their `bin`/`lib` folders on `PATH`.
-- `facedancer_events`: `types` documents the real event values and also matches host event names and data sources.
-- README: the default output folder is `~/cynthion_mcp`.
-- `pyfwup` and `pygreat` are declared dependencies (imported directly).
-
-## [0.1.0] - 2026-11-20
+## [0.1.0] - 2026-11-24
 
 Initial public release.
 
